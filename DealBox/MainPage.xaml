@@ -29,11 +29,12 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,12,0,12">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="Surprise Box!" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-
+        <ProgressBar IsIndeterminate="True" Visibility="{Binding IsProgressBarVisible}" Grid.Row="1" />
+        
         <ListBox HorizontalAlignment="Center" Name="feedListBox" ItemsSource="{Binding FeedList}" Grid.Row="1" SelectionChanged="feedListBox_SelectionChanged">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>

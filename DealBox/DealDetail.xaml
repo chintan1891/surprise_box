@@ -29,7 +29,7 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,12,0,12">
-            <TextBlock x:Name="ApplicationTitle" Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock x:Name="ApplicationTitle" Text="Surprise Box!" Style="{StaticResource PhoneTextExtraLargeStyle}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
@@ -41,7 +41,7 @@
             
             <StackPanel Grid.Row="0">
                 <TextBlock Grid.Row="0"  Margin="10,5,10,0" Text="{Binding title,Converter={StaticResource DetailToTitleConverter}}" FontSize="32" TextWrapping="Wrap" TextTrimming="WordEllipsis" Foreground="{StaticResource PhoneAccentBrush}" />
-                <TextBlock Grid.Row="1" Margin="10,0,10,0" Text="{Binding title,Converter={StaticResource DetailToSiteConverter}}" FontSize="26" FontWeight="Bold" TextTrimming="WordEllipsis" Foreground="{StaticResource PhoneAccentBrush}" />
+                <TextBlock Grid.Row="1" Margin="10,0,10,0" Text="{Binding title,Converter={StaticResource DetailToSiteConverter}}" FontSize="26" FontWeight="Bold" TextTrimming="WordEllipsis" />
                 <TextBlock Grid.Row="2" Margin="10,0,10,5" Text="{Binding title,Converter={StaticResource DetailToPriceConverter}}" FontSize="26" FontWeight="Bold" HorizontalAlignment="Right" Foreground="{StaticResource PhoneAccentBrush}" />
             </StackPanel>
             

@@ -33,6 +33,21 @@ namespace DealBox.ViewModel
             }
         }
 
+        private Visibility isProgressBarVisible;
+        public Visibility IsProgressBarVisible
+        {
+            get
+            {
+                return isProgressBarVisible;
+            }
+            set
+            {
+                isProgressBarVisible = value;
+                NotifyPropertyChanged("IsProgressBarVisible");
+            }
+        }
+
+        
         public MainViewModel()
         {
             
@@ -42,11 +57,14 @@ namespace DealBox.ViewModel
         {
             feedRequest = new WebClient();
             feedRequest.DownloadStringCompleted += new DownloadStringCompletedEventHandler(feedRequest_DownloadStringCompleted);
+
+            IsProgressBarVisible = Visibility.Visible;
             feedRequest.DownloadStringAsync(new Uri("http://www.desidime.com/premium_deals.atom"));
         }
 
         void feedRequest_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
+            IsProgressBarVisible = Visibility.Collapsed;
             XDocument document = XDocument.Parse(e.Result);
             XmlSerializer serializer = new XmlSerializer(typeof(feed));
             feed feed = (feed)serializer.Deserialize(document.CreateReader());

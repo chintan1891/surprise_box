@@ -20,7 +20,7 @@
     </SupportedCultures>
     <XapOutputs>true</XapOutputs>
     <GenerateSilverlightManifest>true</GenerateSilverlightManifest>
-    <XapFilename>DealBox.xap</XapFilename>
+    <XapFilename>SurpriseBox.xap</XapFilename>
     <SilverlightManifestTemplate>Properties\AppManifest.xml</SilverlightManifestTemplate>
     <SilverlightAppEntry>DealBox.App</SilverlightAppEntry>
     <ValidateXaml>true</ValidateXaml>
@@ -104,8 +104,8 @@
     </Content>
     <Content Include="DLL\Microsoft.Phone.Controls.Toolkit.dll" />
     <Content Include="SplashScreenImage.jpg" />
-    <Resource Include="Toolkit.Content\appbar.back.rest.png" />
-    <Resource Include="Toolkit.Content\appbar.next.rest.png" />
+    <Content Include="Toolkit.Content\appbar.back.rest.png" />
+    <Content Include="Toolkit.Content\appbar.next.rest.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Silverlight for Phone\$(TargetFrameworkVersion)\Microsoft.Silverlight.$(TargetFrameworkProfile).Overrides.targets" />
