@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 
 namespace DealBox.ViewModel
 {
@@ -58,17 +59,32 @@ namespace DealBox.ViewModel
             feedRequest = new WebClient();
             feedRequest.DownloadStringCompleted += new DownloadStringCompletedEventHandler(feedRequest_DownloadStringCompleted);
 
-            IsProgressBarVisible = Visibility.Visible;
-            feedRequest.DownloadStringAsync(new Uri("http://www.desidime.com/premium_deals.atom"));
+            if (NetworkInterface.GetIsNetworkAvailable())
+            {
+                IsProgressBarVisible = Visibility.Visible;
+                feedRequest.DownloadStringAsync(new Uri("http://www.desidime.com/premium_deals.atom"));
+            }
+            else
+            {
+                MessageBox.Show("No Network Available.","Network Error",MessageBoxButton.OK);
+            }
         }
 
         void feedRequest_DownloadStringCompleted(object sender, DownloadStringCompletedEventArgs e)
         {
             IsProgressBarVisible = Visibility.Collapsed;
-            XDocument document = XDocument.Parse(e.Result);
-            XmlSerializer serializer = new XmlSerializer(typeof(feed));
-            feed feed = (feed)serializer.Deserialize(document.CreateReader());
-            FeedList = new List<feedEntry>(feed.entry);
+
+            try
+            {
+                XDocument document = XDocument.Parse(e.Result);
+                XmlSerializer serializer = new XmlSerializer(typeof(feed));
+                feed feed = (feed)serializer.Deserialize(document.CreateReader());
+                FeedList = new List<feedEntry>(feed.entry);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Sorry, An error occured while connecting to Server.","Server Error",MessageBoxButton.OK);
+            }
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
